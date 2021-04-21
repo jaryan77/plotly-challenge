@@ -58,9 +58,9 @@ function visuals(sample) {
 function init() {
     var dropDown = d3.select('#selDataset');
     d3.json("../../data/samples.json").then((data) => {
-        var names = data.names;
-        names.forEach((sample) => {
-            dropDown.append('option').text(sample).property('value',sample);
+        var names = data.names
+        data.names.forEach((sample) => {
+            dropDown.append('option').text(sample).property('value');
         });
         var defaultSample = names[0];
         visuals(defaultSample);
