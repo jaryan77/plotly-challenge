@@ -1,5 +1,6 @@
 function readData(sample) {
     d3.json("../../data/samples.json").then((data) => {
+        console.log(data)
         var metadata = data.metadata;
         var outputArray = metadata.filter(sampleObject => sampleObject.id == sample);
         var output = outputArray[0];
@@ -30,7 +31,8 @@ function visuals(sample) {
         ];
         var barLayout = {
             title: 'Top 10 OTUs',
-            margin: {t:20,l:100}
+            margin: {l: 100, r: 100, t: 100, b: 100}
+
         };
         Plotly.newPlot("bar", barData, barLayout);
         //Bubble
@@ -60,7 +62,7 @@ function init() {
     d3.json("../../data/samples.json").then((data) => {
         var names = data.names
         data.names.forEach((sample) => {
-            dropDown.append('option').text(sample).property('value');
+            dropDown.append('option').text(sample).property('value', sample);
         });
         var defaultSample = names[0];
         visuals(defaultSample);
